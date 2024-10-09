@@ -12,11 +12,26 @@ public class HomeController : Controller
     {
         _logger = logger;
     }
+    /*
+     * metoda calculator i widok w nim napis kalkulator 
+     * 
+     */
 
     public IActionResult Index()
     {
         return View();
     }
+    public IActionResult About()
+    {
+        return View();
+    }    
+    public IActionResult Calculator()
+    {
+        return View();
+    }
+
+    
+    
 
     public IActionResult Privacy()
     {
