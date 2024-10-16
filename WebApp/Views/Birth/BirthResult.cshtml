@@ -1,0 +1,12 @@
+﻿@{
+    ViewData["Title"] = "Wynik";
+}
+
+<h3>@ViewBag.Message</h3>
+
+@if (ViewBag.ErrorMessage != null)
+{
+    <p style="color:red;">@ViewBag.ErrorMessage</p>
+}
+
+<a href="@Url.Action("Form", "Birth")">Powrót do formularza</a>

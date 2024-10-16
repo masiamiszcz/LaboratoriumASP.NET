@@ -13,10 +13,7 @@ public class HomeController : Controller
     {
         _logger = logger;
     }
-    /*
-     * metoda calculator i widok w nim napis kalkulator 
-     * 
-     */
+    
 
     public IActionResult Index()
     {
@@ -51,53 +48,12 @@ public class HomeController : Controller
         ViewBag.Age = $"{years} lat, {months} miesięcy i {days} dni";
         return View("ageView"); 
     }
-    public IActionResult Calculator(Operator? op, decimal? x, decimal? y)
+    public IActionResult Calculator()
     {
-// napisz metode age, parametry : data , result wyswietla wiek, w latach miesiacach i dniach 
-
-        decimal? result = 0.0m;
-        if (x is null||y is null)
-        {
-            ViewBag.ErorMessage = "Niepoprawny format liczby x lub y";
-            return View("nullxy");
-        }
-
-        if (op is null || (op != Operator.Add && op != Operator.Div && op != Operator.Sub && op!= Operator.Mul))
-        {
-            ViewBag.ErorMessage("Nieznany operator");
-            return View("nullxy");
-
-        }
-        
-        switch (op)
-        {
-            case Operator.Add:
-                result = x + y;
-                ViewBag.Operator = "+";
-                break;
-            case Operator.Sub:
-                result = x - y;
-                ViewBag.Operator = "-";
-                break;
-            case Operator.Mul:
-                result = x * y;
-                ViewBag.Operator = "*";
-                break;
-            case Operator.Div:
-                result = x / y;
-                ViewBag.Operator = "/";
-                break;
-        }
-
-        ViewBag.Result = result;
-        ViewBag.X = x;
-        ViewBag.Y = y;
         return View();
     }
 
     
-    
-
     public IActionResult Privacy()
     {
         return View();
