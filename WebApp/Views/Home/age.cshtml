@@ -1,0 +1,25 @@
+﻿@model TModel
+
+@{
+    ViewData["Title"] = "Wiek";
+}
+
+
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <title>title</title>
+</head>
+<body>
+<div>
+<h1>@ViewData["Title"]</h1>
+
+<p>Twój wiek to: <strong>@ViewBag.Age</strong></p>
+
+<a href="@Url.Action("Index", "Home")">Powrót do kalkulatora</a>
+      
+</div>
+</body>
+</html>

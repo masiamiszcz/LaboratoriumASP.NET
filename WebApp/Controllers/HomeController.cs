@@ -26,6 +26,31 @@ public class HomeController : Controller
     {
         return View();
     }    
+    public IActionResult Age(DateTime birthDate)
+    {
+        var today = DateTime.Today;
+        int years = today.Year - birthDate.Year;
+
+        if (birthDate.Date > today.AddYears(-years)) 
+        {
+            years--;
+        }
+
+        int months = today.Month - birthDate.Month;
+        if (months < 0) 
+        {
+            months += 12;
+        }
+
+        int days = today.Day - birthDate.Day;
+        if (days < 0) 
+        {
+            days += DateTime.DaysInMonth(today.Year, today.Month - 1);
+        }
+
+        ViewBag.Age = $"{years} lat, {months} miesięcy i {days} dni";
+        return View("ageView"); 
+    }
     public IActionResult Calculator(Operator? op, decimal? x, decimal? y)
     {
 // napisz metode age, parametry : data , result wyswietla wiek, w latach miesiacach i dniach 
