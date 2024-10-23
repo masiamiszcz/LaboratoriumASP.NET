@@ -1,0 +1,13 @@
+﻿@model ContactModel
+
+@{
+    ViewBag.Title = "title";
+    Layout = "_Layout";
+}
+
+<h2>Szczególy kontaktu</h2>
+<h3>@Model.First_name @Model.Last_name</h3>
+<h4>@Model.Email</h4>
+<h4>@Model.Date_of_Birth</h4>
+<h4>@Model.Phonenumber</h4>
+<a href="@Url.Action("Index", "Contact")">Powrót</a>
