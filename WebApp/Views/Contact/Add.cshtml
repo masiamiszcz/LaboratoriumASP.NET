@@ -10,29 +10,36 @@
             <h2>Dodawanie Kontaktu</h2>
             <form asp-action="Add" method="post">
                 <div>
-                    <label asp-for="First_name">Imię</label>
+                    <label asp-for="First_name"></label>
                     <input class="form-control" asp-for="First_name">
                     <span class="text-danger" asp-validation-for="First_name"></span>
                 </div>
                 <div>
-                    <label asp-for="Last_name">Nazwisko</label>
+                    <label asp-for="Last_name"></label>
                     <input class="form-control" asp-for="Last_name">
                     <span class="text-danger" asp-validation-for="Last_name"></span>
                 </div>
                 <div>
-                    <label asp-for="Date_of_Birth">Data urodzenia</label>
+                    <label asp-for="Date_of_Birth"></label>
                     <input class="form-control" asp-for="Date_of_Birth">
                     <span class="text-danger" asp-validation-for="Date_of_Birth"></span>
                 </div>
                 <div>
-                    <label asp-for="Email">E-mail</label>
+                    <label asp-for="Email"></label>
                     <input class="form-control" asp-for="Email">
                     <span class="text-danger" asp-validation-for="Email"></span>
                 </div>
                 <div>
-                    <label asp-for="Phonenumber">Numer Telefonu</label>
+                    <label asp-for="Phonenumber"></label>
                     <input class="form-control" asp-for="Phonenumber">
                     <span class="text-danger" asp-validation-for="Phonenumber"></span>
+                </div> 
+                <div>
+                    <label asp-for="Category"></label>
+                    <select class="form-control" asp-for="Category" asp-items="@Html.GetEnumSelectList<Category>()"> 
+                        
+                    </select>
+                    <span class="text-danger" asp-validation-for="Category"></span>
                 </div>
                 <button type="submit" class="btn btn-outline-primary">Dodaj</button>
                 <button type="reset" class="btn btn-outline-danger">Wyczyść</button>
