@@ -45,6 +45,10 @@
             }
             return null;
         }
-      
+
+        public List<OrganizationEntity> GetAllOrganizaions()
+        {
+            throw new NotImplementedException();
+        }
     } 
 }     

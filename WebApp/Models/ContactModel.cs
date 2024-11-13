@@ -1,5 +1,7 @@
 ﻿    using System.ComponentModel.DataAnnotations;
     using Microsoft.AspNetCore.Mvc;
+    using Microsoft.AspNetCore.Mvc.ModelBinding.Validation;
+    using Microsoft.AspNetCore.Mvc.Rendering;
 
     namespace WebApp.Models;
 
@@ -29,5 +31,14 @@
         public DateOnly Date_of_Birth { get; set; }
 
         [Display(Name = "Kategoria")]
-        public Category Category { get; set; }    
+        public Category Category { get; set; }  
+        
+        [HiddenInput]
+        public int OrganizationId { get; set; }
+        
+        [Display(Name = "Organizacja")]
+        public OrganizationEntity? Organization { get; set; }
+        
+        [ValidateNever]
+        public List<SelectListItem> Organizations { get; set; }
     }

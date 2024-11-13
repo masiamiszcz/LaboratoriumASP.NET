@@ -23,6 +23,9 @@
         <th>
             @Html.DisplayNameFor(d => d[0].Category)
         </th>
+        <th>
+            @Html.DisplayNameFor(d => d[0].Organization)
+        </th>
         <th class=" float-end">
             Operacje
         </th>
@@ -40,6 +43,9 @@
             </td>
             <td>
                 @entry.Category.GetDisplayName()
+            </td>
+            <td>
+                @entry.Organization?.Name
             </td>
             <td>
                 <div class="float-end">

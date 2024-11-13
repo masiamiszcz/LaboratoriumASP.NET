@@ -1,4 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using WebApp.Models;
 
 using WebApp.Models.Services;
@@ -21,7 +23,16 @@ public class ContactController : Controller
     [HttpGet]
     public IActionResult Add()
     {
-        return View();
+        var model = new ContactModel();
+        model.Organizations = _contactService.GetAllOrganizaions()
+            .Select(e => new SelectListItem()
+                {
+                Value = e.Id.ToString(),
+                Text = e.Name,
+                Selected = e.Id==102
+                }
+            ).ToList();
+        return View(model);
     }
     // odebranie danych i zapis kontaku
     [HttpPost]
@@ -29,7 +40,15 @@ public class ContactController : Controller
     {
         if (!ModelState.IsValid)
         {
-            return View();
+            model.Organizations = _contactService.GetAllOrganizaions()
+                .Select(e => new SelectListItem()
+                    {
+                        Value = e.Id.ToString(),
+                        Text = e.Name,
+                        Selected = e.Id==model.Id
+                    }
+                ).ToList();
+            return View(model);
         }
         _contactService.Add(model);
         return RedirectToAction(nameof(Index));
