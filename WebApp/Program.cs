@@ -2,6 +2,7 @@ using WebApp.Models;
 using WebApp.Models.Services;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using WebApp.Models.VideoGames;
 
 namespace WebApp;
 
@@ -15,6 +16,10 @@ public class Program
         builder.Services.AddControllersWithViews();
         builder.Services.AddRazorPages();
         builder.Services.AddDbContext<AppDbContext>();
+        builder.Services.AddDbContext<VideoGamesDbContext>(options =>
+        {
+            options.UseSqlite(builder.Configuration["VideoGamesDatabase:ConnectionString"]);
+        });
 
         builder.Services.AddDefaultIdentity<IdentityUser>(options =>
             {
