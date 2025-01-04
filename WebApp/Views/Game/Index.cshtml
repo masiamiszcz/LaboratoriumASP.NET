@@ -8,35 +8,39 @@
 <h1>Lista Gier</h1>
 
 <p>
-    <a asp-action="Create">Create New</a>
+    <a asp-action="Create" class="btn btn-success">Dodaj nową grę</a>
 </p>
-<table class="table">
+<table class="table game-table">
     <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.GameName)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Genre)
-            </th>
-            <th></th>
-        </tr>
+    <tr>
+        <th class="game-name-header">
+            @Html.DisplayNameFor(model => model.GameName)
+        </th>
+        <th class="genre-header">
+            @Html.DisplayNameFor(model => model.Genre)
+        </th>
+        <th class="actions-header"></th>
+    </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
+    @foreach (var item in Model) {
         <tr>
-            <td>
+            <td class="game-name-cell">
                 @Html.DisplayFor(modelItem => item.GameName)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Genre.Id)
+                @Html.DisplayFor(modelItem => item.Genre.GenreName)
             </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+            <td class="actions-cell">
+                <div class="btn-group">
+                    <a asp-action="Edit" class="btn btn-secondary" asp-route-id="@item.Id">Edit</a>
+                    
+                    <a asp-action="Details" class="btn btn-primary" asp-route-id="@item.Id">Details</a>
+                    
+                    <a asp-action="Delete" class="btn btn-danger" asp-route-id="@item.Id">Delete</a>
+                </div>
             </td>
         </tr>
-}
+    }
     </tbody>
 </table>

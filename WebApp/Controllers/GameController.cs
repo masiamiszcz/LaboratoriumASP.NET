@@ -47,7 +47,7 @@ namespace WebApp.Controllers
         // GET: Game/Create
         public IActionResult Create()
         {
-            ViewData["GenreId"] = new SelectList(_context.Genres, "Id", "Id");
+            ViewData["GenreId"] = new SelectList(_context.Genres, "Id", "GenreName");
             return View();
         }
 
@@ -56,15 +56,27 @@ namespace WebApp.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,GenreId,GameName")] Game game)
+        public async Task<IActionResult> Create([Bind("GameName,GenreId")] Game game)
         {
             if (ModelState.IsValid)
             {
+                // Sprawdź, czy nazwa gry już istnieje
+                if (_context.Games.Any(g => g.GameName == game.GameName))
+                {
+                    ModelState.AddModelError("GameName", "A game with this name already exists.");
+                    ViewData["GenreId"] = new SelectList(_context.Genres, "Id", "GenreName", game.GenreId);
+                    return View(game);
+                }
+                //zanjdywanie i ustawianie ID, żeby pożnabyło dodać
+                var maxId = _context.Games.Max(g => g.Id);  
+                game.Id = maxId + 1;  
+                
                 _context.Add(game);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["GenreId"] = new SelectList(_context.Genres, "Id", "Id", game.GenreId);
+
+            ViewData["GenreId"] = new SelectList(_context.Genres, "Id", "GenreName", game.GenreId);
             return View(game);
         }
 
@@ -81,7 +93,7 @@ namespace WebApp.Controllers
             {
                 return NotFound();
             }
-            ViewData["GenreId"] = new SelectList(_context.Genres, "Id", "Id", game.GenreId);
+            ViewData["GenreId"] = new SelectList(_context.Genres, "Id", "GenreName", game.GenreId);
             return View(game);
         }
 
@@ -117,7 +129,7 @@ namespace WebApp.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["GenreId"] = new SelectList(_context.Genres, "Id", "Id", game.GenreId);
+            ViewData["GenreId"] = new SelectList(_context.Genres, "Id", "GenreName", game.GenreId);
             return View(game);
         }
 
