@@ -28,46 +28,55 @@ body {
 /* Styl dla tabeli */
 .game-table {
   width: 100%;
-  table-layout: fixed;
+  table-layout: auto; /* Pozwala na automatyczne dopasowanie szerokości kolumn */
   border-collapse: collapse;
 }
 
-.game-table th, .game-table td {
+.game-table th,
+.game-table td {
   padding: 10px;
   text-align: left;
 }
 
-.game-table .game-name-header {
-  width: 50%;
-}
-
-.game-table .genre-header {
-  width: 30%;
-}
-
-.game-table .actions-header {
-  width: 20%;
-  text-align: center;
-}
-
+.game-table .game-name-header,
 .game-table .game-name-cell {
   white-space: normal;
   word-wrap: break-word;
+  max-width: none;
 }
 
+
+.game-table .publisher-header {
+  text-align: center; 
+}
+
+.game-table .genre-header,
+.game-table .genre-cell {
+  width: 15%; /* Maksymalna szerokość dla gatunku */
+}
+.game table .genre-header{
+  text-align: left;
+}
+
+.game-table .publisher-header,
+.game-table .publisher-cell {
+  width: 20%; /* Maksymalna szerokość dla wydawcy */
+  text-align: left; 
+}
+
+.game-table .actions-header,
 .game-table .actions-cell {
+  width: 15%; /* Szerokość kolumny z przyciskami */
   text-align: center;
 }
 
 .btn-group .btn {
   margin: 0 2px;
+  border-radius: 12px; /* Zaokrąglenie przycisków */
 }
 
 /* Separator między przyciskami */
 .btn-group .btn-separator {
   margin: 0 5px;
   color: #ccc;
-}
-.btn {
-  border-radius: 12px; 
 }

@@ -7,7 +7,7 @@ using WebApp.Models;
 using WebApp.Models.Services;
 
 namespace WebApp.Controllers;
-[Authorize(Roles = "admin")]
+[Authorize(Roles = "user")]
 public class ContactController : Controller
 {
     private readonly IContactService _contactService;
@@ -61,7 +61,7 @@ public class ContactController : Controller
         _contactService.Delete(id);
         return RedirectToAction(nameof(Index));
     }
-
+    [AllowAnonymous]
     public IActionResult Details(int id)
     {
         return View(_contactService.GetById(id));
